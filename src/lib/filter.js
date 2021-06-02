@@ -14,6 +14,7 @@ module.exports = (bot) => {
     for (let i = 1; i < value.length; i++) {
       response = response + value[i] + ' '
     }
+    console.info(`New Filter recieved. ChatID: ${chatId}, Filter: ${filterword}, Response: ${response}`)
     filterList.add(chatId, filterword, response)
   })
 
@@ -22,6 +23,7 @@ module.exports = (bot) => {
     const chatId = msg.chat.id
     const value = match[1].split(' ')
     const filterword = value[0].toLowerCase()
+    console.info(`Removing filter, ChatID: ${chatId}, Filter: ${filterword}`)
     _.remove(
       filterArr,
       (n) => n.chatId === chatId && n.filter === filterword
@@ -58,11 +60,12 @@ module.exports = (bot) => {
     else {
       const admins = await bot.getChatAdministrators(chatId)
       const userId = msg.from.id
-      console.log(msg)
       if (admins.filter(x => x.user.id === userId).length === 1) {
+        console.info(`Removing all filters for chatId: ${chatId}`)
         _.remove(filterArr, (n) => n.chatId === chatId)
         bot.sendMessage(chatId, 'Deleted all filters', { reply_to_message_id: msg.message_id })
       } else {
+        console.info(`Removing all filters for chatId: ${chatId} Denied. Not an Admin`)
         bot.sendMessage(chatId, 'Only Group admins can delete all the filters', { reply_to_message_id: msg.message_id })
       }
     }
@@ -81,7 +84,7 @@ module.exports = (bot) => {
       )
     })
     if (arr.length > 0) {
-      console.log(msg)
+      console.info(`Filter found. ChatID: ${chatId}, ReplyMsgId: ${msg.message_id}`)
       bot.sendMessage(chatId, arr[0].response, { reply_to_message_id: msg.message_id })
     }
   })
