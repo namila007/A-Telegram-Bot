@@ -5,8 +5,9 @@ Testing telegram bot for fun
 ## How to Run
 
 1. Create a `.env` file and copy content from `.env.example`
-2. Place your **Telegram App Token** value in `BOT_TOKEN` variable
-3. Run `npm run start`
+2. Place your **Telegram App Token** value in `BOT_TOKEN` variable, `APP_URL`
+3. Use `FILTER_ENABLED=true` to enable filters, else keep it null
+4. Run `npm run start`
 
 ## Commands
 
