@@ -4,6 +4,7 @@ const server = require('./server')
 const filter = require('./lib/filter')
 const catPic = require('./lib/cat')
 const token = config.botToken
+const filterEnabled = config.filterEnabled
 
 console.info('Bot token loaded: ', token)
 if (!token) {
@@ -19,5 +20,5 @@ bot.onText(/\/start/, (msg) => {
   bot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}!`)
 })
 
-filter(bot)
+if (filterEnabled)filter(bot)
 catPic(bot)

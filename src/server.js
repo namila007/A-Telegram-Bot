@@ -18,6 +18,11 @@ module.exports = (bot) => {
     res.sendStatus(200)
   })
 
+  // to ping the server
+  server.get('/ping', (req, res) => {
+    res.sendStatus(200)
+  })
+
   // listing port
   server.listen(PORT, () => {
     console.log(`Express server is listening on ${PORT}`)

@@ -5,5 +5,6 @@ module.exports = {
   isDev: process.env.IS_DEV || false,
   catAPI: 'https://api.thecatapi.com/v1/images/search',
   port: process.env.PORT || 5000,
-  url: process.env.APP_URL
+  url: process.env.APP_URL,
+  filterEnabled: process.env.FILTER_ENABLED
 }
